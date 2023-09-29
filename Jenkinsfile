@@ -8,7 +8,6 @@ pipeline{
             agent {
                 docker {
                     image 'openjdk:11'
-                    args '-u root' // Set the user to root within the Docker container
                 }
             }
             steps{
