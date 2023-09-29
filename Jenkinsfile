@@ -8,6 +8,7 @@ pipeline{
             agent {
                 docker {
                     image 'openjdk:11'
+                    user 'root'
                 }
             }
             steps{
@@ -15,6 +16,7 @@ pipeline{
                     withSonarQubeEnv(credentialsId: 'sonar-pass') {
                             sh 'chmod +x gradlew'
                             sh './gradlew sonarqube'
+                            sh 'sudo ./gradlew sonarqube' // Use sudo here if needed
                     }
 
                     timeout(time: 1, unit: 'HOURS') {
